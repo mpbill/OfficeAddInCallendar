@@ -1,0 +1,7 @@
+False
+458e9c8d-b3a1-4f0b-90fe-be375c7c16b63c504fb5-baf1-4763-8be1-b3aff4c3823c
+{82e054d8-b54d-4ba0-8562-88a3abd930ee}{f1a789ea-514a-4ac6-bc66-1e075c927c76}
+{6f3222e7-9144-4b42-af7b-540e0a025c35}
+1.0.0.0
+OfficeAddIn3
+_layouts/15/
