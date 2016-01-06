@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="OfficeAddIn3"
-     ProductID="{7824afd0-7027-4bcf-b321-63e8fc8c794f}"
+     ProductID="{d7ef35f5-84ba-4c0d-aca0-6855c5fadb1c}"
      Version="1.0.0.0"
      SharePointMinVersion="15.0.0.0"
 >

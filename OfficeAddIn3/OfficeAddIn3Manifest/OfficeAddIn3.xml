@@ -12,8 +12,8 @@
   </Hosts>
   <DefaultSettings>
     <SourceLocation DefaultValue="~remoteAppUrl/AddIn/Home/Home.html" />
-    <RequestedWidth>400</RequestedWidth>
-    <RequestedHeight>400</RequestedHeight>
+    <RequestedWidth>800</RequestedWidth>
+    <RequestedHeight>600</RequestedHeight>
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
 </OfficeApp>

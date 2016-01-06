@@ -8,5 +8,6 @@
     <GeneratedProductId>{6f3222e7-9144-4b42-af7b-540e0a025c35}</GeneratedProductId>
     <GeneratedAppVersion>1.0.0.0</GeneratedAppVersion>
     <GeneratedClientSecret>hP3XRUR26KgG/hXBUKV9DpA9b0KLdhGjJKTTYmbObc8=</GeneratedClientSecret>
+    <OnlyShowApisInApiSets>True</OnlyShowApisInApiSets>
   </PropertyGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 var Office = new function() {
     this._appContext = 1;
-    this._showAll = true;
+    this._showAll = false;
     this._setContext = {
         
     };

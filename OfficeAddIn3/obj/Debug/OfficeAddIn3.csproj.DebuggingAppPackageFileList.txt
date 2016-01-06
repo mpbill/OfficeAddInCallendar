@@ -1,2 +1,2 @@
 bin\Debug\OfficeAppManifests\OfficeAddIn3Manifest.xml
-C:\Users\mb659v\Documents\Visual Studio 2015\TempProjects\OfficeAddIn3\OfficeAddIn3\bin\Debug\OfficeAddIn3.debugapp
+C:\Users\Michael\Documents\Visual Studio 2015\Projects\OfficeAddInCallendar\OfficeAddIn3\bin\Debug\OfficeAddIn3.debugapp
