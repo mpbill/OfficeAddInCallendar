@@ -2,9 +2,60 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link href="../../Content/fullcalendar.css" rel="stylesheet" />
+    <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
+    <link href="../App.css" rel="stylesheet" type="text/css"/>
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div id="content-main">
+    <div class="padding">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>This example will read the current document selection.</p>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Date Column Header:
+                    </div>
+                    <div class="col-sm-3">
+                        <input value="Date" id="dateColHeader"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Time Column Header:
+                    </div>
+                    <div class="col-sm-3">
+                        <input value="Time" id="timeColHeader"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Quoted Hours Column Header:
+                    </div>
+                    <div class="col-sm-3">
+                        <input value="TimeSpan" id="timeSpanColHeader"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="btn-group">
+                            <button id="loadevents" class="btn btn-primary">Load Dates</button>
+                            <button id="insertsampledata" class="btn btn-primary">InsertSampleData</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gets replaced By Chart -->
+        <div id="container"></div>
+    </div>
+</div>
+
     <script src="../../Scripts/jquery-1.11.3.js"></script>
     <script src="../../Scripts/moment.js"></script>
     <script src="../../Scripts/moment-msdate.js"></script>
@@ -12,34 +63,13 @@
     <script src="../../Scripts/highcharts/4.2.0/highcharts.src.js"></script>
     <script src="../../Scripts/highcharts/4.2.0/modules/heatmap.js"></script>
     <script src="../../Scripts/highcharts/4.2.0/modules/exporting.js"></script>
-    <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
-    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
     <script src="../../sample.js"></script>
-
-    
+    <!--<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>-->
     <!-- To enable offline debugging using a local reference to Office.js, use:                        -->
-    <!-- <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
-    <!-- <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>  -->
-
-    <link href="../App.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>
+    <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>
     <script src="../App.js" type="text/javascript"></script>
     <script src="Home.js"></script>
-    <link href="Home.css" rel="stylesheet" type="text/css" />
-    
-</head>
-<body>
-    <div id="content-main">
-        <div class="padding">
-            <h1>Welcome</h1>
-            <p>This example will read the current document selection.</p>
-            Date Time Value Column Header: <input value="Scheduled Date From"/><br/>
-            Quoted Hours Column Header: <input value="Quoted Hours"/><br/>
-            Day Start: <input value="7"/><br/>
-            Day End: <input value="21"/><br/>
-            <button id="loadevents">Load Dates</button>
-            <button id="insertsampledata">InsertSampleData</button>
-            <div id="container"></div>
-        </div>
-    </div>
+    <script src="../../Scripts/bootstrap.js"></script>
 </body>
 </html>

@@ -12,7 +12,9 @@
             // page is now ready, initialize the calendar...
         });
     };
+    var dateCol, timeCol, timeSpanCol;
     function insertSampleData() {
+        ///<summary> inserts the object set in <reference path="sample.js"/> into the table</summary>
         var sampleDataArr = [];
         var keys = [];
         for(var propName in sampleData[0]) {
@@ -27,13 +29,15 @@
             sampleDataArr.push(row);
         }
         Office.context.document.setSelectedDataAsync(sampleDataArr,{coercionType: Office.CoercionType.Matrix}, function (result) {
-            var i = 0;
+            
         });
         
     }
-
-    function doNothing() {
-        
+    function setGlobals() {
+        ///<summary>Sets the Global Variables <paramref name="dateCol"/>, <paramref name="timeCol"/>, <paramref name="timeSpanCol"/> from the form.</summary>
+        dateCol = $('#dateColHeader').val();
+        timeCol = $('#timeColHeader').val();
+        timeSpanCol = $('#timeSpanColHeader').val();
     }
     function listListToDictList(arrArr) {
         var dictList = [];
@@ -48,6 +52,7 @@
         return dictList;
     }
     function findMin(dictList, key) {
+        ///<summary>Finds the minimum value of a property in a list of objects</summary>
         var min = dictList[0][key];
         for(var i=1;i<dictList.length;i++) {
             if(dictList[i][key]<min) {
@@ -57,6 +62,7 @@
         return min;
     }
     function findMax(dictList, key) {
+        ///<summary>Finds the maximum value of a property in a list of objects</summary>
         var max = dictList[0][key];
         for (var i = 1; i < dictList.length; i++) {
             if (dictList[i][key] > max) {
@@ -66,34 +72,52 @@
         return max;
     }
     function MakeRange(start, stop, step) {
+        ///<param name="start">the inclusive lower bound for the array</param>
+        ///<param name="stop">the exclusive upper bound for the array</param>
+        ///<param name="step">=array[n]-array[n-1]</param>
+        ///<returns type="array">an array of integers</returns>
         var arr = [];
         for(var i=start;i<stop;i+=step) {
             arr.push(i);
         }
         return arr;
     }
-    function DateWithinDates(start, stop, test) {
-        var range = moment.range(start, stop);
-        return range.contains(test);
+    function RemoveRowsWithNulls(table) {
+        ///<field name="table">An Array of objects.</field>
+        ///<returns type="ListDict">returns a identical table, but whose rows have been trimmed of entries where one of the necessary fields is null.</returns>
+        var toReturn = [];
+        for (var i = 0; i < table.length; i++) {
+            if (!table[i][dateCol] || !table[i][timeCol] || !table[i][timeSpanCol]) {
+                
+            }
+            else {
+                toReturn.push(table[i]);
+            }
+        }
+        return toReturn;
     }
     function MakeData(result) {
+        setGlobals();
         var table = listListToDictList(result.value);
-        var min = findMin(table, "DateTime");
-        var max = findMax(table, "DateTime") + (3 / 24);
-        var minDay = Math.floor(min);
-        var maxDay = Math.floor(max);
+        table = RemoveRowsWithNulls(table);
+        var minDay = findMin(table, dateCol);
+        var maxDay = findMax(table, dateCol);
+        var minTime = findMin(table, timeCol);
+        var maxTime = findMax(table, timeCol);
         var dayDiff = maxDay - minDay;
+        if (dayDiff > 18) {
+            //throw error, chart looks bad at over 18 days.  should implament switching to largeHeatmap if this is the case.
+        }
+        var timeDiff = maxTime - minTime;
         var dateArr = [];
         for (var i = 0; i <= dayDiff; i++) {
             dateArr.push(minDay + i);
         }
-        
-
         var dateArrStrings = [];
         for (var i = 0; i < dateArr.length; i++) {
             dateArrStrings.push(moment.fromOADate(dateArr[i]).format("MM/DD/YYYY"));
         }
-        var hrRange = MakeRange(8, 20, 1);
+        var hrRange = MakeRange(Math.floor(minTime*24), Math.ceil(maxTime*24), 1);
         var hrRangeStrings = [];
         hrRange.forEach(function (hour) {
             hrRangeStrings.push(moment({ hours: hour }).format("h a") + " - " + moment({hours:hour+1}).format("h a"));
@@ -106,8 +130,8 @@
                 var dateOne = dateArr[x] + hrRange[y] / 24;
                 var dateTwo = dateOne + 1 / 24;
                 for(var i=0;i<table.length;i++) {
-                    var date3 = table[i]["DateTime"];
-                    var date4 = date3 + table[i]["TimeSpan"] / 24;
+                    var date3 = table[i][dateCol] + table[i][timeCol];
+                    var date4 = date3 + table[i][timeSpanCol] / 24;
                     var from = Math.max(dateOne, date3);
                     var to = Math.min(dateTwo, date4);
                     if (from <= to) {
